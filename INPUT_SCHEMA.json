@@ -4,14 +4,14 @@
     "type": "object",
     "schemaVersion": 1,
     "properties": {
-        "TogglUserName": {
-            "user": "username",
+        "togglUserName": {
+            "title": "username",
             "type": "string",
             "description": "username on toggl.com",
             "prefill": { "user": "user@company.com" }
 	    },
-        "TogglPassword": {
-                "password": "TogglAccountPassword123",
+        "togglPassword": {
+                "title": "password",
                 "type": "string",
                 "description": "Toggl account password",
                 "prefill": 
