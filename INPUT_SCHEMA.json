@@ -1,0 +1,40 @@
+{
+    "title": "Toggl.com invoice download",
+    "description": "To run the actor, Toggl.com credentials must be provided. Dropbox token and email for notification are optional.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "TogglUserName": {
+            "user": "username",
+            "type": "string",
+            "description": "username on toggl.com",
+            "prefill": { "user": "user@company.com" }
+	    },
+        "TogglPassword": {
+                "password": "TogglAccountPassword123",
+                "type": "string",
+                "description": "Toggl account password",
+                "prefill": 
+                    { "password": "password123" }
+        },
+        "dropboxToken": {
+            "title": "Dropbox token",
+            "type": "string",
+            "description": "Token for dropbox",
+            "prefill": { "dropboxToken": "GCDRDJKU%$#%$(&f" }
+        },
+        "pathToDropbox": {
+        "title": "Path to Dropbox",
+        "type": "string",
+        "description": "Path where to upload the invoice on Dropbox. The invoice will be uploaded with predefined name month_DD_YYYY_toggl.pdf",
+        "prefill": { "pathToDropbox": "/2020_01"}
+        },
+        "emailTo": {
+        "title": "Email to",
+        "type": "string",
+        "description": "Email address for sending the notification.",
+        "prefill": { "emailTo": "user@company.com" }
+        }
+    },
+    "required": ["TogglUserName", "TogglPassword"]
+}
