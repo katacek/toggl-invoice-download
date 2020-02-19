@@ -1,3 +1,30 @@
-# Apify project template
+# Toggl invoice download
 
-Before you start writing your first actor, please read [Apify Marketplace developers WIKI](https://gitlab.com/apify-public/wiki/wikis/home).
+Apify actor to download invoices from [Toggl.com](https://toggl.com/) (time-tracker application). This actor goes to toggl.com, sign in, go to invoices, download the last one and save it to key-value store.
+There is a possibility to upload the invoice to dropbox and send notification email - already existing actors ([dropbox upload](https://apify.com/petr_cermak/dropbox-upload), [send mail](https://apify.com/apify/send-mail)) are incorporated in the code. 
+
+## Input 
+
+The following table shows specification of the actor INPUT fields as defined by its input schema. 
+
+Field |	Type	| Description
+---| ---| ---|
+user|	*String*|	(required) Username on toggl.com (i.e.  "user": "user@company.com" )
+password|	*String*|	(required) Toggl account password (i.e.  "password": "password123" )
+dropboxToken|	*String*|	(optional) Token for dropbox (i.e. "dropboxToken": "GCDRDJKU%$#%$(&f" )
+pathToDropbox| 	*String*|	(optional) Path where to upload the invoice on Dropbox. 
+emailTo| 	*String*|	(optional) Email address for sending the notification (i.e.  "emailTo": "user@company.com")
+
+## How to run
+
+To run the actor, you'll need an [Apify account](https://my.apify.com/). Simply create a new task for the actor by clicking the green button above, modify the actor input configuration, click Run and get your results.
+
+## API
+
+To run the actor from your code, send a HTTP POST request to the following API endpoint: 
+
+https://api.apify.com/v2/acts/katerinahronik~togglbeta?token=<YOUR_API_TOKEN>
+
+## CU usage 
+
+Approximately 0.03 CU per run including upload to dropbox and sending e-mail.
