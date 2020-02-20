@@ -119,7 +119,7 @@ Apify.main(async () => {
     const emailTo = input.emailTo;
     
     if (emailTo) {  
-        const emailText = "Invoice from Toggl (" + filename + ") was uploaded to Dropbox. URL to key-value store: " + urlForKVS + ".";
+        const emailText = "Invoice from Toggl (" + filename + ") was downloaded and uploaded to Dropbox (if requested). URL to key-value store: " + urlForKVS + ".";
 
         const emailActorInput = {
             "to": emailTo,
