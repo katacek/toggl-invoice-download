@@ -1,6 +1,6 @@
 {
     "title": "Toggl.com invoice download",
-    "description": "To run the actor, Toggl.com credentials must be provided. Dropbox token and email for notification are optional.",
+    "description": "To run the actor, Toggl.com credentials must be provided. 'Dropbox token', 'path to dropbox' and 'email to' are optional.",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
@@ -40,5 +40,5 @@
             "editor": "textfield"
         }
     },
-    "required": ["togglUserName"]
+    "required": ["togglUserName", "togglPassword"]
 }
