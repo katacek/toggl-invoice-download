@@ -117,14 +117,19 @@ Apify.main(async () => {
     }
 
     const emailTo = input.emailTo;
+    const attachmentPdf = pdfBuffer.toString('base64');
     
     if (emailTo) {  
-        const emailText = "Invoice from Toggl (" + filename + ") was downloaded and uploaded to Dropbox (if requested). URL to key-value store: " + urlForKVS + ".";
+        const emailText = "Invoice (" + filename + ") was downloaded from Toggl.com and uploaded to Dropbox (if requested). URL to key-value store: " + urlForKVS + ".";
 
         const emailActorInput = {
             "to": emailTo,
             "subject": "Toggl invoice was downloaded",
             "text": emailText,
+            "attachments": [{
+                filename: filename,
+                data: attachmentPdf
+            }]
         }
 
         await Apify.call('apify/send-mail', emailActorInput)
