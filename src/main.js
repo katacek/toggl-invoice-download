@@ -95,8 +95,14 @@ Apify.main(async () => {
         const year = date.getFullYear();
         const dropboxPath = year + '_' + month;
         
-        const filenameDropbox = input.pathToDropbox + '/' + filename || '/' + dropboxPath + '/' + filename;
+        let filenameDropbox = null
 
+        if (input.pathToDropbox !== undefined){
+            filenameDropbox = input.pathToDropbox + '/' + filename;
+        } else {
+            filenameDropbox = '/' + dropboxPath + '/' + filename;
+        }
+       
         const dropboxActorInput = {
             "accessToken": dropboxToken,       // dropbox access token
             "filePath": filenameDropbox,      // path on dropbox to save the file to
