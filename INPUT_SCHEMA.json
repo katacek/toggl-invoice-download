@@ -40,5 +40,5 @@
             "editor": "textfield"
         }
     },
-    "required": ["togglUserName", "togglPassword"]
+    "required": ["togglUserName"]
 }
