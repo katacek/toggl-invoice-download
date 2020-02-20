@@ -5,7 +5,7 @@
     "schemaVersion": 1,
     "properties": {
         "togglUserName": {
-            "title": "username",
+            "title": "Toggl username",
             "type": "string",
             "description": "username on toggl.com",
             "prefill": "user@company.com",
