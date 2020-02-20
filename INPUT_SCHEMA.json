@@ -9,35 +9,35 @@
             "type": "string",
             "description": "username on toggl.com",
             "prefill": "user@company.com",
-            "editor": "javascript"
+            "editor": "textfield"
 	    },
         "togglPassword": {
             "title": "TogglAccountPassword123",
             "type": "string",
             "description": "Toggl account password",
             "prefill": "password123",
-            "editor": "javascript"
+            "editor": "textfield"
         },
         "dropboxToken": {
             "title": "Dropbox token",
             "type": "string",
             "description": "Token for dropbox",
             "prefill": "GCDRDJKU%$#%$(&f",
-            "editor": "javascript"
+            "editor": "textfield"
         },
         "pathToDropbox": {
             "title": "Path to Dropbox",
             "type": "string",
             "description": "Path where to upload the invoice on Dropbox. The invoice will be uploaded with predefined name month_DD_YYYY_toggl.pdf",
             "prefill": "/2020_01",
-            "editor": "javascript"
+            "editor": "textfield"
         },
         "emailTo": {
             "title": "Email to",
             "type": "string",
             "description": "Email address for sending the notification.",
             "prefill": "user@company.com",
-            "editor": "javascript"
+            "editor": "textfield"
         }
     },
     "required": ["TogglUserName", "TogglPassword"]

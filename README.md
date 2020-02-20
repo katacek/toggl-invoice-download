@@ -1,7 +1,7 @@
 # Toggl invoice download
 
-Apify actor to download invoices from [Toggl.com](https://toggl.com/) (time-tracker application). This actor goes to toggl.com, sign in, go to invoices, download the last one and save it to key-value store.
-There is a possibility to upload the invoice to dropbox and send notification email - already existing actors ([dropbox upload](https://apify.com/petr_cermak/dropbox-upload), [send mail](https://apify.com/apify/send-mail)) are incorporated in the code. 
+Apify actor to download invoices from [Toggl.com](https://toggl.com/) (time-tracker application). This actor goes to toggl.com, signs in, goes to invoices, downloads the last one and saves it to key-value store.
+There is a possibility to upload the invoice to dropbox and send a notification email - by already existing actors ([dropbox upload](https://apify.com/petr_cermak/dropbox-upload), [send mail](https://apify.com/apify/send-mail)) incorporated in the code. 
 
 ## Input 
 
@@ -23,7 +23,7 @@ To run the actor, you'll need an [Apify account](https://my.apify.com/). Simply
 
 To run the actor from your code, send a HTTP POST request to the following API endpoint: 
 
-https://api.apify.com/v2/acts/katerinahronik~togglbeta?token=<YOUR_API_TOKEN>
+https://api.apify.com/v2/acts/katerinahronik~toggl-invoice-download?token=<YOUR_API_TOKEN>
 
 ## CU usage 
 
