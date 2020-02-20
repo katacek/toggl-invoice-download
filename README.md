@@ -23,7 +23,7 @@ To run the actor, you'll need an [Apify account](https://my.apify.com/). Simply
 
 To run the actor from your code, send a HTTP POST request to the following API endpoint: 
 
-https://api.apify.com/v2/acts/katerinahronik~togglbeta?token=<YOUR_API_TOKEN>
+https://api.apify.com/v2/acts/katerinahronik~toggl-invoice-download?token=<YOUR_API_TOKEN>
 
 ## CU usage 
 
