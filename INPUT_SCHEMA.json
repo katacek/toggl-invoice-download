@@ -5,35 +5,39 @@
     "schemaVersion": 1,
     "properties": {
         "TogglUserName": {
-            "user": "username",
+            "title": "username",
             "type": "string",
             "description": "username on toggl.com",
-            "prefill": { "user": "user@company.com" }
+            "prefill": "user@company.com",
+            "editor": "javascript"
 	    },
         "TogglPassword": {
-                "password": "TogglAccountPassword123",
-                "type": "string",
-                "description": "Toggl account password",
-                "prefill": 
-                    { "password": "password123" }
+            "title": "TogglAccountPassword123",
+            "type": "string",
+            "description": "Toggl account password",
+            "prefill": "password123",
+            "editor": "javascript"
         },
         "dropboxToken": {
             "title": "Dropbox token",
             "type": "string",
             "description": "Token for dropbox",
-            "prefill": { "dropboxToken": "GCDRDJKU%$#%$(&f" }
+            "prefill": "GCDRDJKU%$#%$(&f",
+            "editor": "javascript"
         },
         "pathToDropbox": {
-        "title": "Path to Dropbox",
-        "type": "string",
-        "description": "Path where to upload the invoice on Dropbox. The invoice will be uploaded with predefined name month_DD_YYYY_toggl.pdf",
-        "prefill": { "pathToDropbox": "/2020_01"}
+            "title": "Path to Dropbox",
+            "type": "string",
+            "description": "Path where to upload the invoice on Dropbox. The invoice will be uploaded with predefined name month_DD_YYYY_toggl.pdf",
+            "prefill": "/2020_01",
+            "editor": "javascript"
         },
         "emailTo": {
-        "title": "Email to",
-        "type": "string",
-        "description": "Email address for sending the notification.",
-        "prefill": { "emailTo": "user@company.com" }
+            "title": "Email to",
+            "type": "string",
+            "description": "Email address for sending the notification.",
+            "prefill": "user@company.com",
+            "editor": "javascript"
         }
     },
     "required": ["TogglUserName", "TogglPassword"]
