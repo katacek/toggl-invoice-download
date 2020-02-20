@@ -2,8 +2,8 @@ const Apify = require('apify');
 
 Apify.main(async () => {
     
-    const user = input.user || process.env.user;
-    const pwd = input.password || process.env.pwd;
+    const user = input.togglUserName || process.env.user;
+    const pwd = input.togglPassword || process.env.pwd;
 
     console.log('Launching Puppeteer...');
     const browser = await Apify.launchPuppeteer();
