@@ -12,7 +12,7 @@ Field |	Type	| Description
 user|	*String*|	(required) Username on toggl.com (i.e.  "user": "user@company.com" )
 password|	*String*|	(required) Toggl account password (i.e.  "password": "password123" )
 dropboxToken|	*String*|	(optional) Token for dropbox (i.e. "dropboxToken": "GCDRDJKU%$#%$(&f" )
-pathToDropbox| 	*String*|	(optional) Path where to upload the invoice on Dropbox. 
+pathToDropbox| 	*String*|	(optional) Path where to upload the invoice on Dropbox. Default setting is to folder named YYYY_MM.
 emailTo| 	*String*|	(optional) Email address for sending the notification (i.e.  "emailTo": "user@company.com")
 
 ## How to run
