@@ -12,7 +12,7 @@
             "editor": "textfield"
 	    },
         "togglPassword": {
-            "title": "TogglAccountPassword123",
+            "title": "Toggl Account Password",
             "type": "string",
             "description": "Toggl account password",
             "prefill": "password123",
