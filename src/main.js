@@ -2,6 +2,9 @@ const Apify = require('apify');
 
 Apify.main(async () => {
     
+    const input = await Apify.getValue('INPUT');
+    const { user, pwd } = getCredentials(input);
+    
     const user = input.togglUserName || process.env.user;
     const pwd = input.togglPassword || process.env.pwd;
 
