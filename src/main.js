@@ -29,7 +29,7 @@ Apify.main(async () => {
     const linkSubscription = await page.$eval(subscription,el=>el.href);
     await page.goto(linkSubscription);
 
-    const invoices = '.css-1f6gjvz.e1lwzskz3 > div > a:nth-child(3)';
+    const invoices = '.css-1ufzzne.e1lwzskz3 > div > a:nth-child(3)';
     await page.waitForSelector(invoices);
 
     const linkInvoices = await page.$eval(invoices,el=>el.href);
