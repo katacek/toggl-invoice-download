@@ -3,7 +3,7 @@ const Apify = require('apify');
 Apify.main(async () => {
     
     const input = await Apify.getValue('INPUT');
-    
+
     const user = input.togglUserName || process.env.user;
     const pwd = input.togglPassword || process.env.pwd;
 
@@ -12,28 +12,37 @@ Apify.main(async () => {
 
     console.log('Signing in ...');
     const page = await browser.newPage();
+
+    await page.goto('https://toggl.com/login/', {
+        waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
+       });
+
     await page.goto('https://toggl.com/login/');
     await page.type('#login-email', user, { delay: 100 });
     await page.type('#login-password', pwd, { delay: 100 });
+    
+    await page.focus('#login-button');
+    await page.waitFor(500);
+    
     await page.click('#login-button');
+    await page.waitForNavigation();
+
     console.log('Signed ...');
 
-    // go through pages to invoices
-    const showMore = '.css-dq2otx.e34dboa1 > div:nth-child(1) > div:nth-child(21) > button';
-    await page.waitForSelector(showMore);
-    await page.click(showMore);
+    //go to url subscriptions
+    const urlSubscription = 'https://toggl.com/app/subscription';
+    await page.goto(urlSubscription);
+    await page.waitForNavigation();
+    const currentUrl = page.url();
 
-    const subscription = '.css-dq2otx.e34dboa1 > div:nth-child(1) > div:nth-child(15) > a';
-    await page.waitForSelector(subscription);
+    //find id in url
+    const regex = /[0-9]+/g;
+    const found = currentUrl.match(regex);
 
-    const linkSubscription = await page.$eval(subscription,el=>el.href);
-    await page.goto(linkSubscription);
-
-    const invoices = '.css-1ufzzne.e1lwzskz3 > div > a:nth-child(3)';
-    await page.waitForSelector(invoices);
-
-    const linkInvoices = await page.$eval(invoices,el=>el.href);
-    await page.goto(linkInvoices);
+    //construct invoice url with id
+    const invoiceUrl = 'https://toggl.com/app/subscription/'+ found +'/invoices-and-payments';
+    //goto url invoices
+    await page.goto(invoiceUrl);
 
     const lastInvoice = '.css-1xdhyk6.e22ygp00 > div > a:nth-child(3)'
     await page.waitForSelector(lastInvoice);
@@ -43,7 +52,8 @@ Apify.main(async () => {
     // get url to last invoice and name the file
     const linkLastInvoice = await page.$eval(lastInvoice,el=>el.href);
     const invoiceName = '.css-1xdhyk6.e22ygp00 > div > a:nth-child(3) > div > div.css-8a0s72.e22ygp01'
-    const text = await page.$eval(invoiceName, el => el.textContent);
+    const texpromise = page.$eval(invoiceName, el => el.textContent);
+    const text = await texpromise;
     const filename = text.replace(/\s+/g,'_').replace(/,/g,'')+'_toggl.pdf';
     
     // get request     
