@@ -13,16 +13,16 @@ Apify.main(async () => {
     console.log('Signing in ...');
     const page = await browser.newPage();
 
-    await page.goto('https://toggl.com/login/', {
-        waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
-       });
+    //await page.goto('https://toggl.com/login/', {
+        //waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
+       //});
 
     await page.goto('https://toggl.com/login/');
     await page.type('#login-email', user, { delay: 100 });
     await page.type('#login-password', pwd, { delay: 100 });
     
-    await page.focus('#login-button');
-    await page.waitFor(500);
+    //await page.focus('#login-button');
+    //await page.waitFor(500);
     
     await page.click('#login-button');
     await page.waitForNavigation();
