@@ -7,15 +7,8 @@ Apify.main(async () => {
     const user = input.togglUserName || process.env.user;
     const pwd = input.togglPassword || process.env.pwd;
     
-    const crawler = new Apify.PuppeteerCrawler({
-    puppeteerPoolOptions: {
-        useLiveView: true,
-    },
-    // other options
-    });
-
     console.log('Launching Puppeteer...');
-   // const browser = await Apify.launchPuppeteer();
+    const browser = await Apify.launchPuppeteer({ liveView: true });
 
     console.log('Signing in ...');
     const page = await browser.newPage();
