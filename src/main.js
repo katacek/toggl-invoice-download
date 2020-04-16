@@ -8,7 +8,11 @@ Apify.main(async () => {
     const pwd = input.togglPassword || process.env.pwd;
 
     console.log('Launching Puppeteer...');
-    const browser = await Apify.launchPuppeteer();
+    const browser = await Apify.launchPuppeteer({
+    puppeteerPoolOptions: {
+        useLiveView: true,
+    }
+    });
 
     console.log('Signing in ...');
     const page = await browser.newPage();
