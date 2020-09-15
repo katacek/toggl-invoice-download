@@ -18,14 +18,20 @@ Apify.main(async () => {
        //});
 
     await page.goto('https://toggl.com/login/');
-    await page.type('#login-email', user, { delay: 100 });
-    await page.type('#login-password', pwd, { delay: 100 });
+    //await page.type('#login-email', user, { delay: 100 });
+    //await page.type('#login-password', pwd, { delay: 100 });
     
-    await page.focus('#login-button');
-    await page.waitFor(500);
+    //await page.focus('#login-button');
+    //await page.waitFor(500);
     
-    await page.click('#login-button');
-    await page.waitForNavigation();
+    //await page.click('#login-button');
+    //await page.waitForNavigation();
+    
+    await page.type('#email', user, { delay: 100 });
+    await page.type('#password', pwd, { delay: 100 });
+
+    await page.evaluate(() => document.querySelector('button[type="submit"]').scrollIntoView());
+    await page.click('button[type="submit"]');
 
     console.log('Signed ...');
 
