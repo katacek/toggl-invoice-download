@@ -32,6 +32,7 @@ Apify.main(async () => {
 
     await page.evaluate(() => document.querySelector('button[type="submit"]').scrollIntoView());
     await page.click('button[type="submit"]');
+    await page.waitForNavigation();
 
     console.log('Signed ...');
 
