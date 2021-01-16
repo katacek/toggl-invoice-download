@@ -51,14 +51,14 @@ Apify.main(async () => {
     //goto url invoices
     await page.goto(invoiceUrl);
 
-    const lastInvoice = '.css-1xdhyk6.e22ygp00 > div > a:nth-child(3)'
+    const lastInvoice = '.css-gg42vh-Wrapper.e22ygp00 > div > a:nth-child(3)'
     await page.waitForSelector(lastInvoice);
 
     console.log('Opening invoice ...');
     
     // get url to last invoice and name the file
     const linkLastInvoice = await page.$eval(lastInvoice,el=>el.href);
-    const invoiceName = '.css-1xdhyk6.e22ygp00 > div > a:nth-child(3) > div > div.css-8a0s72.e22ygp01'
+    const invoiceName = '.css-gg42vh-Wrapper.e22ygp00 > div > a:nth-child(3) > div > div.css-19f70po-Date.e22ygp01'
     const texpromise = page.$eval(invoiceName, el => el.textContent);
     const text = await texpromise;
     const filename = text.replace(/\s+/g,'_').replace(/,/g,'')+'_toggl.pdf';
