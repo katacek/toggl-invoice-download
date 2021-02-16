@@ -64,7 +64,8 @@ Apify.main(async () => {
     
     // get url to last invoice and name the file
     
-
+    const screenshotBuffer = await page.screenshot({ fullPage: true });
+    await Apify.setValue('screenshot.png', screenshotBuffer, { contentType: 'image/png' });
     const linkLastInvoice = await page.evaluate( function () {return $('div[type="invoice"]').eq(0).attr('href');})
     const invoiceName = await page.evaluate( function () {return $('div[type="invoice"]').eq(0).children().eq(0).text();})
     const filename = invoiceName.replace(/\s+/g,'_').replace(/,/g,'')+'_toggl.pdf';
