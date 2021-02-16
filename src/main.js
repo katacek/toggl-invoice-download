@@ -56,7 +56,7 @@ Apify.main(async () => {
     const invoiceUrl = 'https://toggl.com/app/subscription/'+ found +'/invoices-and-payments';
     //goto url invoices
     await page.goto(invoiceUrl);
-    await page.waitFor(3000);
+    await page.waitFor(60000);
 
     await puppeteer.injectJQuery(page);
 
