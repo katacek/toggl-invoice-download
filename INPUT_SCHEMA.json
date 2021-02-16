@@ -39,6 +39,5 @@
             "prefill": "user@company.com",
             "editor": "textfield"
         }
-    },
-    "required": ["togglUserName", "togglPassword"]
+    }
 }
