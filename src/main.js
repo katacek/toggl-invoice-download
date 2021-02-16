@@ -60,10 +60,6 @@ Apify.main(async () => {
 
     await puppeteer.injectJQuery(page);
 
-    
-
-
-
     console.log('Opening invoice ...');
     
     // get url to last invoice and name the file
