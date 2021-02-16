@@ -38,6 +38,7 @@ Apify.main(async () => {
 
     await page.evaluate(() => document.querySelector('button[type="submit"]').scrollIntoView());
     await page.click('button[type="submit"]');
+    console.log(user);
     const screenshotBuffer = await page.screenshot({ fullPage: true });
     await Apify.setValue('screenshot.png', screenshotBuffer, { contentType: 'image/png' });
     await page.waitForNavigation();
