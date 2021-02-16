@@ -1,11 +1,17 @@
 const Apify = require('apify');
+const { puppeteer } = Apify.utils;
 
 Apify.main(async () => {
-    
-    const input = await Apify.getValue('INPUT');
+    let input = {};
 
-    const user = input.togglUserName || process.env.user;
-    const pwd = input.togglPassword || process.env.pwd;
+    if (Apify.isAtHome()) {
+        input = await Apify.getValue('INPUT');
+    } else {
+        input = {};
+    }
+    
+    const user = process.env.user;
+    const pwd = process.env.pwd;
     
     console.log('Launching Puppeteer...');
     const browser = await Apify.launchPuppeteer();
@@ -50,18 +56,22 @@ Apify.main(async () => {
     const invoiceUrl = 'https://toggl.com/app/subscription/'+ found +'/invoices-and-payments';
     //goto url invoices
     await page.goto(invoiceUrl);
+    await page.waitFor(3000);
 
-    const lastInvoice = '.css-1xdhyk6.e22ygp00 > div > a:nth-child(3)'
-    await page.waitForSelector(lastInvoice);
+    await puppeteer.injectJQuery(page);
+
+    
+
+
 
     console.log('Opening invoice ...');
     
     // get url to last invoice and name the file
-    const linkLastInvoice = await page.$eval(lastInvoice,el=>el.href);
-    const invoiceName = '.css-1xdhyk6.e22ygp00 > div > a:nth-child(3) > div > div.css-8a0s72.e22ygp01'
-    const texpromise = page.$eval(invoiceName, el => el.textContent);
-    const text = await texpromise;
-    const filename = text.replace(/\s+/g,'_').replace(/,/g,'')+'_toggl.pdf';
+    
+
+    const linkLastInvoice = await page.evaluate( function () {return $('div[type="invoice"]').eq(0).attr('href');})
+    const invoiceName = await page.evaluate( function () {return $('div[type="invoice"]').eq(0).children().eq(0).text();})
+    const filename = invoiceName.replace(/\s+/g,'_').replace(/,/g,'')+'_toggl.pdf';
     
     // get request     
     const simpleRequest = require('request-promise-native');
@@ -104,7 +114,7 @@ Apify.main(async () => {
     console.log('Invoice can be found on the following url: ' + urlForKVS);
 
     // upload to dropbox optional
-    const dropboxToken = input.dropboxToken || process.env.dropboxToken
+    const dropboxToken = process.env.dropboxToken
 
     if (dropboxToken) {
         const base64str = pdfBuffer.toString('base64');
