@@ -23,7 +23,7 @@ Apify.main(async () => {
         //waitUntil: ['load','domcontentloaded','networkidle0','networkidle2']
        //});
 
-    await page.goto('https://toggl.com/login/');
+    await page.goto('https://toggl.com/login/', {waitUntil:'networkidle2'});
     //await page.type('#login-email', user, { delay: 100 });
     //await page.type('#login-password', pwd, { delay: 100 });
     
@@ -35,17 +35,21 @@ Apify.main(async () => {
     
     await page.type('#email', user, { delay: 100 });
     await page.type('#password', pwd, { delay: 100 });
+    await page.waitFor(5000);
 
     await page.evaluate(() => document.querySelector('button[type="submit"]').scrollIntoView());
+    //await page.waitForSelector('button[type="submit"]');
+    //await page.evalute(()=> function({ $('button[type="submit"]').click() });
+    await page.waitFor(5000);
     await page.click('button[type="submit"]');
-    await page.waitForNavigation();
+    await page.waitForNavigation({waitUntil:'networkidle2'});
 
     console.log('Signed ...');
 
     //go to url subscriptions
     const urlSubscription = 'https://toggl.com/app/subscription';
     await page.goto(urlSubscription);
-    await page.waitForNavigation();
+    await page.waitForNavigation({waitUntil:'networkidle2'});
     const currentUrl = page.url();
 
     //find id in url
@@ -55,7 +59,7 @@ Apify.main(async () => {
     //construct invoice url with id
     const invoiceUrl = 'https://toggl.com/app/subscription/'+ found +'/invoices-and-payments';
     //goto url invoices
-    await page.goto(invoiceUrl);
+    await page.goto(invoiceUrl,{waitUntil:'networkidle2'});
     await page.waitFor(3000);
 
     await puppeteer.injectJQuery(page);
